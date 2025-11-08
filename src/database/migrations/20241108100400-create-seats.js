@@ -12,7 +12,7 @@ module.exports = {
         references: { model: "Screens", key: "id" },
         onDelete: "CASCADE",
       },
-      seatNumber: { type: Sequelize.STRING, allowNull: false }, // e.g., 'A1'
+      seatNumber: { type: Sequelize.STRING, allowNull: false },
       type: { type: Sequelize.STRING, defaultValue: "standard" },
       createdAt: { allowNull: false, type: Sequelize.DATE },
       updatedAt: { allowNull: false, type: Sequelize.DATE },

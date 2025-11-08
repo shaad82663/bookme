@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false,
       },
       duration: {
-        type: Sequelize.INTEGER, // in minutes
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

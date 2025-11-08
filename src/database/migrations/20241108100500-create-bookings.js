@@ -22,7 +22,7 @@ module.exports = {
         references: { model: "Seats", key: "id" },
         onDelete: "CASCADE",
       },
-      status: { type: Sequelize.STRING, defaultValue: "booked" }, // booked, cancelled
+      status: { type: Sequelize.STRING, defaultValue: "booked" },
       createdAt: { allowNull: false, type: Sequelize.DATE },
       updatedAt: { allowNull: false, type: Sequelize.DATE },
     });
