@@ -1,5 +1,4 @@
-// src/services/sequelize.service.js
-import sequelize from "../config/database"; // ← Import the instance directly
+import sequelize from "../config/database";
 import fs from "fs";
 
 const modelFiles = fs
@@ -9,10 +8,8 @@ const modelFiles = fs
 const sequelizeService = {
   init: async () => {
     try {
-      // Use the already-created instance
       const connection = sequelize;
 
-      // Load and initialize models
       for (const file of modelFiles) {
         const model = await import(`../models/${file}`);
         if (model.default.init) {
@@ -20,7 +17,6 @@ const sequelizeService = {
         }
       }
 
-      // Setup associations
       for (const file of modelFiles) {
         const model = await import(`../models/${file}`);
         if (model.default.associate) {
@@ -34,7 +30,7 @@ const sequelizeService = {
       throw error;
     }
   },
-  getInstance: () => sequelize, // Optional: for transactions
+  getInstance: () => sequelize,
 };
 
 export default sequelizeService;
