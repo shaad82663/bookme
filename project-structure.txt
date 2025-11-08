@@ -1,0 +1,32 @@
+.
+├── docker-compose.yml
+├── nodemon.json
+├── package.json
+├── project-structure.txt
+└── src
+    ├── config
+    │   └── database.js
+    ├── controllers
+    │   ├── login.controller.js
+    │   └── user.controller.js
+    ├── database
+    │   └── migrations
+    │       └── 20201004134309-create-users.js
+    ├── index.js
+    ├── middlewares
+    │   ├── auth.middleware.js
+    │   └── errorHandler.middleware.js
+    ├── models
+    │   └── User.js
+    ├── routes
+    │   ├── login.routes.js
+    │   └── user.routes.js
+    ├── services
+    │   ├── aws.service.js
+    │   ├── express.service.js
+    │   ├── jwt.service.js
+    │   └── sequelize.service.js
+    └── utils
+        └── ApiError.js
+
+11 directories, 19 files
