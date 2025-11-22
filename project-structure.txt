@@ -1,32 +1,76 @@
 .
 ├── docker-compose.yml
+├── init-db.sql
 ├── nodemon.json
+├── package-lock.json
 ├── package.json
 ├── project-structure.txt
-└── src
-    ├── config
-    │   └── database.js
-    ├── controllers
-    │   ├── login.controller.js
-    │   └── user.controller.js
-    ├── database
-    │   └── migrations
-    │       └── 20201004134309-create-users.js
-    ├── index.js
-    ├── middlewares
-    │   ├── auth.middleware.js
-    │   └── errorHandler.middleware.js
-    ├── models
-    │   └── User.js
-    ├── routes
-    │   ├── login.routes.js
-    │   └── user.routes.js
-    ├── services
-    │   ├── aws.service.js
-    │   ├── express.service.js
-    │   ├── jwt.service.js
-    │   └── sequelize.service.js
-    └── utils
-        └── ApiError.js
+├── src
+│   ├── ai
+│   │   ├── agents
+│   │   │   ├── booking.js
+│   │   │   └── index.js
+│   │   ├── models
+│   │   │   ├── index.js
+│   │   │   ├── ollama.js
+│   │   │   └── openai.js
+│   │   ├── schema
+│   │   │   ├── booking.js
+│   │   │   └── index.js
+│   │   └── tools
+│   │       ├── booking.js
+│   │       └── index.js
+│   ├── config
+│   │   └── database.js
+│   ├── controllers
+│   │   ├── booking.controller.js
+│   │   ├── login.controller.js
+│   │   ├── movie.controller.js
+│   │   ├── screen.controller.js
+│   │   ├── show.controller.js
+│   │   ├── theater.controller.js
+│   │   └── user.controller.js
+│   ├── database
+│   │   └── migrations
+│   │       ├── 1763817416817-add-columns.js
+│   │       ├── 20201004134309-create-users.js
+│   │       ├── 20241108100000-create-movies.js
+│   │       ├── 20241108100100-create-theaters.js
+│   │       ├── 20241108100200-create-screens.js
+│   │       ├── 20241108100300-create-shows.js
+│   │       ├── 20241108100400-create-seats.js
+│   │       └── 20241108100500-create-bookings.js
+│   ├── index.js
+│   ├── middlewares
+│   │   ├── auth.middleware.js
+│   │   └── errorHandler.middleware.js
+│   ├── models
+│   │   ├── Booking.js
+│   │   ├── Movie.js
+│   │   ├── Screen.js
+│   │   ├── Seat.js
+│   │   ├── Show.js
+│   │   ├── Theater.js
+│   │   └── User.js
+│   ├── routes
+│   │   ├── booking.routes.js
+│   │   ├── login.routes.js
+│   │   ├── movie.routes.js
+│   │   ├── query.routes.js
+│   │   ├── screen.routes.js
+│   │   ├── show.routes.js
+│   │   ├── theater.routes.js
+│   │   └── user.routes.js
+│   ├── services
+│   │   ├── aws.service.js
+│   │   ├── express.service.js
+│   │   ├── jwt.service.js
+│   │   ├── redis.service.js
+│   │   └── sequelize.service.js
+│   ├── tools
+│   └── utils
+│       └── ApiError.js
+├── todo.txt
+└── yarn.lock
 
-11 directories, 19 files
+18 directories, 56 files

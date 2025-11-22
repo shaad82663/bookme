@@ -36,6 +36,9 @@ const bookingController = {
       const available = seats.filter(
         (s) => !bookedIds.includes(s.id) && !lockedSeats.includes(s.id)
       );
+      if (req.isAIRequest) {
+        return available;
+      }
       return res.status(200).json(available);
     } catch (error) {
       next(error);
