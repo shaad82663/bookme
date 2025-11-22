@@ -5,6 +5,6 @@ import authMiddleware from "../middlewares/auth.middleware";
 const bookingRoutes = Router();
 bookingRoutes.get("/availability/:showId", bookingController.checkAvailability);
 bookingRoutes.post("/lock-seats", authMiddleware, bookingController.lockSeats);
-bookingRoutes.post("/book", authMiddleware, bookingController.book);
+bookingRoutes.post("/book", authMiddleware, bookingController.bookTicket);
 
 export { bookingRoutes };

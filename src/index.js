@@ -15,7 +15,6 @@ const services = [expressService, awsService, sequelizeService];
     console.log("Server initialized.");
     await redisService.init();
     console.log("Redis initialized.");
-    //PUT ADITIONAL CODE HERE.
   } catch (error) {
     console.log(error);
     process.exit(1);

@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 import Screen from "../models/Screen";
 import Seat from "../models/Seat";
+import Theater from "../models/Theater";
 import { BadRequestError, ValidationError } from "../utils/ApiError";
-
 const screenController = {
   add: async (req, res, next) => {
     try {
@@ -37,7 +37,12 @@ const screenController = {
   get: async (req, res, next) => {
     try {
       const screens = await Screen.findAll({
-        include: [{ model: "Theater", attributes: ["name", "location"] }],
+        include: [
+          {
+            model: Theater,
+            attributes: ["name", "location"],
+          },
+        ],
       });
       return res.status(200).json(screens);
     } catch (error) {
@@ -49,7 +54,7 @@ const screenController = {
     try {
       const { id } = req.params;
       const screen = await Screen.findByPk(id, {
-        include: [{ model: "Theater" }, { model: "Seat" }],
+        include: [{ model: Theater }, { model: Seat }],
       });
       if (!screen) throw new BadRequestError("Screen not found");
       return res.status(200).json(screen);

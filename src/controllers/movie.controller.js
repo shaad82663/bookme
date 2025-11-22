@@ -1,6 +1,5 @@
 import * as Yup from "yup";
 import Movie from "../models/Movie";
-import { BadRequestError, ValidationError } from "../utils/ApiError";
 
 const movieController = {
   add: async (req, res, next) => {

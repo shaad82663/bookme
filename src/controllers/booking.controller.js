@@ -36,6 +36,18 @@ const bookingController = {
       const available = seats.filter(
         (s) => !bookedIds.includes(s.id) && !lockedSeats.includes(s.id)
       );
+      if (req.isAIRequest) {
+        // Temporary solution for AI response optimization. Need to implement a better way later.
+        // To optimse the AI Model token usage, sending metadata to indicate to cut the results
+        const aiResponseWithMetadata = {
+          metaData: {
+            sliceIndex: 3,
+            isArray: true,
+          },
+          responseData: available,
+        };
+        return aiResponseWithMetadata;
+      }
       return res.status(200).json(available);
     } catch (error) {
       next(error);
@@ -70,6 +82,9 @@ const bookingController = {
 
         await client.set(lockKey, lockId, { EX: TTL });
       }
+      if (req.isAIRequest) {
+        return { lockId, expiresIn: TTL };
+      }
 
       return res.status(200).json({ lockId, expiresIn: TTL });
     } catch (error) {
@@ -77,7 +92,7 @@ const bookingController = {
     }
   },
 
-  book: async (req, res, next) => {
+  bookTicket: async (req, res, next) => {
     try {
       const schema = Yup.object().shape({
         lockId: Yup.string().required(),
@@ -85,10 +100,10 @@ const bookingController = {
         seatIds: Yup.array().of(Yup.number()).required().min(1),
       });
       if (!(await schema.isValid(req.body))) throw new ValidationError();
-
       const { lockId, showId, seatIds } = req.body;
       const userId = req.userId;
       const client = redisService.getClient();
+      // await client.del(await client.keys("lock:*")); // --- IGNORE --- debug line to clear all locks
       const sequelize = sequelizeService.getInstance();
 
       await sequelize.transaction(async (t) => {
@@ -110,7 +125,12 @@ const bookingController = {
           await client.del(lockKey);
         }
       });
-
+      if (req.isAIRequest) {
+        return {
+          msg: "Tickets booked successfully",
+          bookingIds: seatIds,
+        };
+      }
       return res.status(201).json({
         msg: "Tickets booked successfully",
         bookingIds: seatIds,
