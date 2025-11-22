@@ -19,6 +19,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.20.0",
     "jsonwebtoken": "^9.0.0",
+    "langsmith": "^0.3.81",
     "moment": "^2.29.3",
     "multer": "^2.0.2",
     "mysql2": "^3.9.8",

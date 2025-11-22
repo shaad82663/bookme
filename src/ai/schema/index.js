@@ -1,5 +1,5 @@
-import bookingSchemas from "./booking.js";
+import toolSchemas from "./tools";
 
 export default {
-  bookingSchemas,
+  toolSchemas,
 };
