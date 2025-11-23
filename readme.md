@@ -1,7 +1,5 @@
 # BookMe
 
-[![Agent vs Manual Flow](https://drive.google.com/file/d/13pYEBfYo8Tg85qDNr_UAod7MAI8PYMEr/view?usp=sharing)
-
 ## Quick Overview
 
 BookMe is my little project – an AI-powered movie ticket booking system built with Node.js and a dash of LangChain magic. Imagine ditching the usual click-fest on a website: instead of manually hunting for shows, checking seats, and locking them down, you just chat with an intelligent agent. Tell it something like "Book two seats for _Samshayam_ on the 25th," and boom – it handles the rest, from querying availability to confirming your booking.
