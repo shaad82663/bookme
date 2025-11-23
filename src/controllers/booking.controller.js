@@ -50,6 +50,9 @@ const bookingController = {
       }
       return res.status(200).json(available);
     } catch (error) {
+      if (req.isAIRequest) {
+        return { error: error.message || "Error checking availability" };
+      }
       next(error);
     }
   },
@@ -88,6 +91,9 @@ const bookingController = {
 
       return res.status(200).json({ lockId, expiresIn: TTL });
     } catch (error) {
+      if (req.isAIRequest) {
+        return { error: error.message || "Error checking availability" };
+      }
       next(error);
     }
   },
@@ -136,6 +142,9 @@ const bookingController = {
         bookingIds: seatIds,
       });
     } catch (error) {
+      if (req.isAIRequest) {
+        return { error: error.message || "Error checking availability" };
+      }
       next(error);
     }
   },

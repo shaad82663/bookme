@@ -2,6 +2,14 @@ import models from "../models/index.js";
 import tools from "../tools/index.js";
 import _ from "lodash";
 
+let messages = [
+  {
+    role: "system",
+    content:
+      "You are a booking agent. Think step-by-step, use tools when needed, and return a final actionable answer. Before computing the current year for any date-based logic, call the currentTime tool and use its value. You need to pass dates in various tool calls",
+  },
+];
+
 const trimResponse = (result) => {
   if (result.metaData) {
     const { responseData } = result;
@@ -31,14 +39,7 @@ class BookingAgent {
   }
 
   async callModel(initialPrompt, options = {}) {
-    let messages = [
-      {
-        role: "system",
-        content:
-          "You are a booking agent. Think step-by-step, use tools when needed, and return a final actionable answer. Before computing the current year for any date-based logic, call the currentTime tool and use its value. You need to pass dates in various tool calls",
-      },
-      { role: "user", content: initialPrompt },
-    ];
+    messages.push({ role: "user", content: initialPrompt });
     const results = [];
     const maxIterations = 10;
     let iteration = 0;
@@ -85,6 +86,9 @@ class BookingAgent {
         });
       }
       iteration++;
+      if (messages.length > 30) {
+        messages = [messages[0], ...messages.slice(-5)];
+      }
     }
 
     if (iteration === maxIterations) {
