@@ -48,7 +48,7 @@ cp .env.example .env
 npm run dev
 ```
 
-# Register a test user (or use your existing auth flow)
+# Prompt API
 
 ```
 curl --location 'http://localhost:3001/query' \
